@@ -1,12 +1,12 @@
 Summary:	rpcsec_gss implementation library
 Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
 Name:		librpcsecgss
-Version:	0.1
+Version:	0.5
 Release:	1
 License:	mixture of UM and Sun licenses
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
-# Source0-md5:	74bfa65a320b1db241d5e91043fa4123
+# Source0-md5:	0c8c7df876e6fe8994b231d2aa2012b2
 Patch0:		%{name}-configure.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
@@ -15,7 +15,6 @@ BuildRequires:	heimdal-devel
 BuildRequires:	libtool
 # it's checked before heimdal (which is preferred in PLD)
 BuildConflicts:	krb5-devel
-Requires:	heimdal-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING ChangeLog README
 %attr(755,root,root) %{_libdir}/librpcsecgss.so.*.*.*
 
 %files devel
