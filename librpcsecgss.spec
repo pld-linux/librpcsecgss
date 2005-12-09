@@ -1,20 +1,28 @@
+#
+# Conditional build:
+%bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
+#
 Summary:	rpcsec_gss implementation library
 Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
 Name:		librpcsecgss
-Version:	0.6
+Version:	0.7
 Release:	1
 License:	mixture of UM and Sun licenses
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
-# Source0-md5:	962da89d2f2e7a70b2b90cb125cbceaa
-Patch0:		%{name}-configure.patch
+# Source0-md5:	08d07cb462555c00cfba6708112a646a
+Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	libtool
-# it's checked before heimdal (which is preferred in PLD)
-BuildConflicts:	krb5-devel
+%if %{with libgssapi}
+BuildRequires:	libgssapi-devel >= 0.6
+BuildRequires:	pkgconfig
+Requires:	libgssapi >= 0.6
+%else
+BuildRequires:	heimdal-devel
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +38,11 @@ Summary:	Development files for librpcsecgss library
 Summary(pl):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%if %{with libgssapi}
+Requires:	libgssapi-devel >= 0.6
+%else
 Requires:	heimdal-devel
+%endif
 
 %description devel
 Development files for librpcsecgss library.
@@ -52,16 +64,20 @@ Statyczna biblioteka librpcsecgss.
 
 %prep
 %setup -q
+%if %{without libgssapi}
 %patch0 -p1
+sed -i -e 's,gssapi/gssapi\.h,gssapi.h,' include/rpcsecgss/rpc/auth_gss.h \
+	src/{authgss_prot,auth_gss,svc_auth_gss}.c
+%endif
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
-	--with-krb5=/usr
-%{__make}
+%configure
+%{__make} \
+	librpcsecgss_la_LIBADD='$(GSSAPI_LIBS)'
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -84,6 +100,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/librpcsecgss.so
 %{_libdir}/librpcsecgss.la
+%{_includedir}/rpcsecgss
+%{_pkgconfigdir}/librpcsecgss.pc
 
 %files static
 %defattr(644,root,root,755)
