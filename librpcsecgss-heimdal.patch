@@ -1,10 +1,10 @@
---- librpcsecgss-0.7/configure.in.orig	2005-12-05 17:32:46.000000000 +0100
-+++ librpcsecgss-0.7/configure.in	2005-12-09 20:36:20.189112720 +0100
+--- librpcsecgss-0.11/configure.in.orig	2006-04-14 19:07:25.000000000 +0200
++++ librpcsecgss-0.11/configure.in	2006-04-17 10:39:25.957987750 +0200
 @@ -12,10 +12,8 @@
  AC_PROG_RANLIB
  
  # Checks for libraries.
--PKG_CHECK_MODULES(GSSAPI, libgssapi, [],
+-PKG_CHECK_MODULES([GSSAPI], [libgssapi >= 0.9], [],
 -  [AC_MSG_ERROR([Unable to locate information required to use libgssapi.
 -  If you have pkgconfig installed, you might try setting environment
 -  variable PKG_CONFIG_PATH to /usr/local/lib/pkgconfig])])
