@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
+%bcond_without	libgssapi	# use heimdal directly instead of libgssapi glue
 #
 Summary:	rpcsec_gss implementation library
 Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.11
-Release:	1
+Release:	2
 License:	mixture of UM and Sun licenses
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
