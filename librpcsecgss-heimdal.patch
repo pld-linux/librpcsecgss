@@ -13,3 +13,13 @@
  
  # Checks for header files.
  AC_HEADER_STDC
+--- librpcsecgss-0.11/librpcsecgss.pc.in~	2005-12-05 15:41:20.000000000 +0100
++++ librpcsecgss-0.11/librpcsecgss.pc.in	2006-05-05 19:51:04.000000000 +0200
+@@ -5,7 +5,6 @@
+ 
+ Name: librpcsecgss
+ Description: Library that implements rpcsec_gss interface.
+-Requires: libgssapi
+ Version: @PACKAGE_VERSION@
+ Libs: -L@libdir@ -lrpcsecgss
+ Cflags: -I@includedir@/rpcsecgss
