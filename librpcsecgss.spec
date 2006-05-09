@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	libgssapi	# use heimdal directly instead of libgssapi glue
+%bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
 #
 Summary:	rpcsec_gss implementation library
 Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
