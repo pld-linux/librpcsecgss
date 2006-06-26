@@ -5,12 +5,12 @@
 Summary:	rpcsec_gss implementation library
 Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
 Name:		librpcsecgss
-Version:	0.12
+Version:	0.13
 Release:	1
 License:	mixture of UM and Sun licenses
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
-# Source0-md5:	947f06db78d3327c1d2d5ad7ffe09554
+# Source0-md5:	024143270490e0e252832c9f64499645
 Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
