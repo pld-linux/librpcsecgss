@@ -64,7 +64,7 @@ Statyczna biblioteka librpcsecgss.
 
 %prep
 %setup -q
-%if %{without libgssapi}
+%if !%{with libgssapi}
 %patch0 -p1
 sed -i -e 's,gssapi/gssapi\.h,gssapi.h,' include/rpcsecgss/rpc/auth_gss.h \
 	src/{authgss_prot,auth_gss,svc_auth_gss}.c
