@@ -3,7 +3,7 @@
 %bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
 #
 Summary:	rpcsec_gss implementation library
-Summary(pl):	Biblioteka implementuj±ca rpcsec_gss
+Summary(pl.UTF-8):   Biblioteka implementujÄ…ca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.14
 Release:	1
@@ -29,13 +29,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 librpcsecgss allows secure RPC communication using the rpcsec_gss
 protocol.
 
-%description -l pl
-librpcsecgss umo¿liwia bezpieczn± komunikacjê RPC przy u¿yciu
-protoko³u rpcsec_gss.
+%description -l pl.UTF-8
+librpcsecgss umoÅ¼liwia bezpiecznÄ… komunikacjÄ™ RPC przy uÅ¼yciu
+protokoÅ‚u rpcsec_gss.
 
 %package devel
 Summary:	Development files for librpcsecgss library
-Summary(pl):	Pliki programistyczne biblioteki librpcsecgss
+Summary(pl.UTF-8):   Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %if %{with libgssapi}
@@ -47,19 +47,19 @@ Requires:	heimdal-devel
 %description devel
 Development files for librpcsecgss library.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne biblioteki librpcsecgss.
 
 %package static
 Summary:	Static librpcsecgss library
-Summary(pl):	Statyczna biblioteka librpcsecgss
+Summary(pl.UTF-8):   Statyczna biblioteka librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static librpcsecgss library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka librpcsecgss.
 
 %prep
