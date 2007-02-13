@@ -3,7 +3,7 @@
 %bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
 #
 Summary:	rpcsec_gss implementation library
-Summary(pl.UTF-8):   Biblioteka implementująca rpcsec_gss
+Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.14
 Release:	1
@@ -35,7 +35,7 @@ protokołu rpcsec_gss.
 
 %package devel
 Summary:	Development files for librpcsecgss library
-Summary(pl.UTF-8):   Pliki programistyczne biblioteki librpcsecgss
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %if %{with libgssapi}
@@ -52,7 +52,7 @@ Pliki programistyczne biblioteki librpcsecgss.
 
 %package static
 Summary:	Static librpcsecgss library
-Summary(pl.UTF-8):   Statyczna biblioteka librpcsecgss
+Summary(pl.UTF-8):	Statyczna biblioteka librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
