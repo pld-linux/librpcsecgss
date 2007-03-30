@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	libgssapi	# use libgssapi glue instead of heimdal directly
+%bcond_with	heimdal	# use heimdal instead of libgssapi glue
 #
 Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.14
-Release:	1
+Release:	2
 License:	mixture of UM and Sun licenses
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
@@ -16,12 +16,12 @@ URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	libtool
-%if %{with libgssapi}
+%if %{with heimdal}
+BuildRequires:	heimdal-devel
+%else
 BuildRequires:	libgssapi-devel >= 0.9
 BuildRequires:	pkgconfig
 Requires:	libgssapi >= 0.9
-%else
-BuildRequires:	heimdal-devel
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,10 +38,10 @@ Summary:	Development files for librpcsecgss library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%if %{with libgssapi}
-Requires:	libgssapi-devel >= 0.9
-%else
+%if %{with heimdal}
 Requires:	heimdal-devel
+%else
+Requires:	libgssapi-devel >= 0.9
 %endif
 
 %description devel
@@ -64,7 +64,7 @@ Statyczna biblioteka librpcsecgss.
 
 %prep
 %setup -q
-%if !%{with libgssapi}
+%if %{with heimdal}
 %patch0 -p1
 sed -i -e 's,gssapi/gssapi\.h,gssapi.h,' include/rpcsecgss/rpc/auth_gss.h \
 	src/{authgss_prot,auth_gss,svc_auth_gss}.c
