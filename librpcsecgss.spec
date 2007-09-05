@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.15
 Release:	1
-License:	mixture of UM and Sun licenses
+License:	BSD/MIT
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
 # Source0-md5:	7d39d6aab44d99aacd197be6d592bbf3
