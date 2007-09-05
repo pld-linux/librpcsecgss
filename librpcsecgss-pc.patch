@@ -1,0 +1,11 @@
+--- librpcsecgss-0.15/librpcsecgss.pc.in.orig	2005-12-05 15:41:20.000000000 +0100
++++ librpcsecgss-0.15/librpcsecgss.pc.in	2007-09-05 19:59:25.066293821 +0200
+@@ -5,7 +5,7 @@
+ 
+ Name: librpcsecgss
+ Description: Library that implements rpcsec_gss interface.
+-Requires: libgssapi
++Requires: libgssglue
+ Version: @PACKAGE_VERSION@
+ Libs: -L@libdir@ -lrpcsecgss
+ Cflags: -I@includedir@/rpcsecgss
