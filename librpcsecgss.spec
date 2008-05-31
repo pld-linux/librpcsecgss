@@ -1,12 +1,12 @@
 Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
-Version:	0.17
+Version:	0.18
 Release:	1
 License:	BSD/MIT
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
-# Source0-md5:	06408038a4b2a3233f5fcee01049e2af
+# Source0-md5:	f2c4a69c5a32f62b762a569b8d962156
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README
 %attr(755,root,root) %{_libdir}/librpcsecgss.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/librpcsecgss.so.3
 
 %files devel
 %defattr(644,root,root,755)
