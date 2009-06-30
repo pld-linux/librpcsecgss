@@ -23,7 +23,12 @@ BuildRequires:	libgssglue-devel >= 0.1
 %endif
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+%if %{with heimdal}
+Requires:	heimdal-libs
+Conflicts:	libgssglue
+%else
 Requires:	libgssglue >= 0.1
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +44,12 @@ Summary:	Development files for librpcsecgss library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%if %{with heimdal}
+Requires:	heimdal-devel
+Conflicts:	libgssglue-devel
+%else
 Requires:	libgssglue-devel >= 0.1
+%endif
 
 %description devel
 Development files for librpcsecgss library.
