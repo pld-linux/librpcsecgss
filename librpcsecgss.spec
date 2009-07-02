@@ -25,7 +25,6 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 %if %{with heimdal}
 Requires:	heimdal-libs
-Conflicts:	libgssglue
 %else
 Requires:	libgssglue >= 0.1
 %endif
@@ -46,7 +45,6 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %if %{with heimdal}
 Requires:	heimdal-devel
-Conflicts:	libgssglue-devel
 %else
 Requires:	libgssglue-devel >= 0.1
 %endif
