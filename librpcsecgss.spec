@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	heimdal		# build with Heimdal Kerberos instead of MIT
+%bcond_with	krb5		# build with MIT Kerberos instead of Heimdal
 #
 Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.18
-Release:	2
+Release:	3
 License:	BSD/MIT
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
@@ -15,18 +15,18 @@ Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-%if %{with heimdal}
+%if %{with krb5}
+BuildRequires:	libgssglue-devel >= 0.1
+%else
 BuildRequires:	heimdal-devel
 BuildConflicts:	libgssglue-devel
-%else
-BuildRequires:	libgssglue-devel >= 0.1
 %endif
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-%if %{with heimdal}
-Requires:	heimdal-libs
-%else
+%if %{with krb5}
 Requires:	libgssglue >= 0.1
+%else
+Requires:	heimdal-libs
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,10 +43,10 @@ Summary:	Development files for librpcsecgss library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%if %{with heimdal}
-Requires:	heimdal-devel
-%else
+%if %{with krb5}
 Requires:	libgssglue-devel >= 0.1
+%else
+Requires:	heimdal-devel
 %endif
 
 %description devel
