@@ -5,12 +5,12 @@
 Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
-Version:	0.18
-Release:	3
+Version:	0.19
+Release:	1
 License:	BSD/MIT
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
-# Source0-md5:	f2c4a69c5a32f62b762a569b8d962156
+# Source0-md5:	b45ed565bdc3099023aa35830ec92997
 Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
@@ -19,7 +19,6 @@ BuildRequires:	automake
 BuildRequires:	libgssglue-devel >= 0.1
 %else
 BuildRequires:	heimdal-devel
-BuildConflicts:	libgssglue-devel
 %endif
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -76,7 +75,8 @@ Statyczna biblioteka librpcsecgss.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--with-gssapiimpl=%{?with_krb5:libgssglue}%{!?with_krb5:heimdal-gssapi}
 %{__make}
 
 %install

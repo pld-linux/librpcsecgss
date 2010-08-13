@@ -1,19 +1,26 @@
-diff -NaurwB librpcsecgss-0.18.orig/configure.in librpcsecgss-0.18/configure.in
---- librpcsecgss-0.18.orig/configure.in	2008-04-09 00:05:40.000000000 +0200
-+++ librpcsecgss-0.18/configure.in	2008-06-12 19:05:51.000000000 +0200
-@@ -12,10 +12,15 @@
+--- librpcsecgss-0.19/configure.in.orig	2009-07-29 20:33:44.000000000 +0200
++++ librpcsecgss-0.19/configure.in	2010-08-13 19:53:23.298816591 +0200
+@@ -12,10 +12,22 @@
  AC_PROG_RANLIB
  
  # Checks for libraries.
 -PKG_CHECK_MODULES([GSSGLUE], [libgssglue >= 0.1], [],
-+PKG_CHECK_MODULES([GSSGLUE], [libgssglue >= 0.1],
-+  [echo GSSGLUE found; GSSAPI_IMPLEMENTATION=libgssglue],
-+  [PKG_CHECK_MODULES([GSSGLUE], [heimdal-gssapi],
-+    [echo HEIMDAL found; GSSAPI_IMPLEMENTATION=heimdal-gssapi],
-   [AC_MSG_ERROR([Unable to locate information required to use libgssglue.
+-  [AC_MSG_ERROR([Unable to locate information required to use libgssglue.
++GSSAPI_IMPLEMENTATION='libgssglue >= 0.1'
++AC_ARG_WITH([gssapiimpl],
++	    [AS_HELP_STRING([--with-gssapiimpl], [use given GSSAPI implementation (default is libgssglue)])],
++	    [GSSAPI_IMPLEMENTATION=$withval])
++
++PKG_CHECK_MODULES([GSSGLUE], [$GSSAPI_IMPLEMENTATION],
++  [echo GSSAPI in $GSSAPI_IMPLEMENTATION found],
++  [PKG_CHECK_MODULES([GSSGLUE], [libgssglue >= 0.1],
++    [echo GSSAPI in libgssglue found; GSSAPI_IMPLEMENTATION='libgssglue >= 0.1'],
++    [PKG_CHECK_MODULES([GSSGLUE], [heimdal-gssapi],
++      [echo GSSAPI in heimdal-gssapi found; GSSAPI_IMPLEMENTATION='heimdal-gssapi'],
++  [AC_MSG_ERROR([Unable to locate information required to use GSSAPI implementation.
    If you have pkgconfig installed, you might try setting environment
 -  variable PKG_CONFIG_PATH to /usr/local/lib/pkgconfig])])
-+    variable PKG_CONFIG_PATH to /usr/local/lib/pkgconfig])])])
++    variable PKG_CONFIG_PATH to /usr/local/lib/pkgconfig])])])])
 +
 +AC_SUBST([GSSAPI_IMPLEMENTATION])
  
