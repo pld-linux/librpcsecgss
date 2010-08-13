@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	krb5		# build with MIT Kerberos instead of Heimdal
+%bcond_with	gssglue	# use GSSGLUE layer instead of linking with Heimdal Kerberos directly
 #
 Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
@@ -15,14 +15,14 @@ Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-%if %{with krb5}
+%if %{with gssglue}
 BuildRequires:	libgssglue-devel >= 0.1
 %else
 BuildRequires:	heimdal-devel
 %endif
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-%if %{with krb5}
+%if %{with gssglue}
 Requires:	libgssglue >= 0.1
 %else
 Requires:	heimdal-libs
@@ -42,7 +42,7 @@ Summary:	Development files for librpcsecgss library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki librpcsecgss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%if %{with krb5}
+%if %{with gssglue}
 Requires:	libgssglue-devel >= 0.1
 %else
 Requires:	heimdal-devel
@@ -76,7 +76,7 @@ Statyczna biblioteka librpcsecgss.
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-gssapiimpl=%{?with_krb5:libgssglue}%{!?with_krb5:heimdal-gssapi}
+	--with-gssapiimpl=%{?with_gssglue:libgssglue}%{!?with_gssglue:heimdal-gssapi}
 %{__make}
 
 %install
