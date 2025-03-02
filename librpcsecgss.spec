@@ -6,7 +6,7 @@ Summary:	rpcsec_gss implementation library
 Summary(pl.UTF-8):	Biblioteka implementująca rpcsec_gss
 Name:		librpcsecgss
 Version:	0.19
-Release:	4
+Release:	4.1
 License:	BSD/MIT
 Group:		Libraries
 Source0:	http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/%{name}-%{version}.tar.gz
@@ -15,6 +15,8 @@ Patch0:		%{name}-heimdal.patch
 URL:		http://www.citi.umich.edu/projects/nfsv4/linux/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
+# relies on glibc sunrpc implementation; tirpc already implements rpcsecgss
+BuildRequires:	glibc-devel < 6:2.24
 %if %{with gssglue}
 BuildRequires:	libgssglue-devel >= 0.1
 %else
